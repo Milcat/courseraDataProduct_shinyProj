@@ -1,0 +1,75 @@
+---
+title: "Linear Regression"
+author: "Milca Tarshish"
+date: "7/4/2019"
+output: ioslides_presentation
+css: presentation.css
+widescreen: no
+
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE, size='tiny')
+```
+***
+<font size="6">What is a linear regression?</font>  
+<font size="4">A linear regression is a mathematical-statistical way to express the linear relation between an outcome/response variable, and one ore more explanatory variables.  
+**For example** how can a persons weight can be expressed as a function of his height?    
+In this example - the weight is the outcome/response variable, and the height is the explanatory variables.  
+If we take a random sample of 10 mens heights and weights, we would for example get something like this:</font>
+
+height (cm)      |  weight (kg) 
+-----------------|-------------
+    160          |   60
+    180          |   85 
+    175          |   81
+    201          |   87
+    188          |   77
+    173          |   74
+    182          |   80
+    166          |   72
+    192          |   91
+    178          |   86
+
+***    
+<font size="6">Generating and plotting the data and the regression line:</font>   
+```{r, echo=T,size='tiny',fig.height=3.5,fig.width=3.5}
+men<-data.frame("height"=c(160,180,175,201,188,173,182,166,192,178), 
+                "weight"=c(60, 85, 81, 87, 77, 74, 80, 72, 91, 86))
+men_lm<-lm(data=men,weight~height)
+plot(x=men$height,y=men$weight,col="blue",pch=19,xlab="Height (cm)"
+     ,ylab="weight (kg)",main="men linear regression \nfor weight vs height")
+abline(men_lm,lwd=2,col="red")
+```
+   
+***
+<font size="6">Application for playing around with linear regression</font>   
+<font size="4">
+In the bellow url - you can find an interactive application that enables you to enter 4 points on an x-y axis, and see the linear regression line that is generated upon their values.  
+[Linear regression interactive applocation](http://milcat.shinyapps.io/Shiny_project_Linear_regression/)  
+You should choose 4 points with x and y values, each between -100 and 100.  
+The points will be shown on the plot, along with the linear regression line that fits them.  
+You can see that changing the points coordinates, changes the regression line.  
+You can also coose if want to show in the plot each of the following elements:  
+1. The 4 points  
+2. The regression line  
+3. The legend  
+
+***
+######################################### 
+######################################### 
+######################################### 
+### Bellow is a snapshot of the application:  
+######################################### 
+######################################### 
+    
+```{r,message=F,warning=F,fig.height=6,fig.width=9.5}
+library("jpeg")
+img <- readJPEG("Capture1.jpg", native = TRUE)
+par(mar=c(1,1,1,0.5))
+if(exists("rasterImage")){
+      plot(1:2, type='n',ann=F,axes=F)
+      rasterImage(img,1,1,2,2)
+}
+```
+
